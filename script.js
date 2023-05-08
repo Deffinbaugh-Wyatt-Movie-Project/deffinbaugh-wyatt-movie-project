@@ -1,6 +1,8 @@
 //call the api and get stuffs back
             //-make pretty html
 //edit and delete button
+let startingID;
+
 
 // HOW TO GRAB STUFF
 fetch("https://checker-debonair-trigonometry.glitch.me/movies")
@@ -8,6 +10,7 @@ fetch("https://checker-debonair-trigonometry.glitch.me/movies")
     .then(data => {
     console.log(data);
     displayMovies(data);
+	startingID = data.length;
 });
 
 function displayMovies(data) {
@@ -34,7 +37,7 @@ let display = `<tr>
     </tr>`
 
 
-startingID = 20;
+
 
 function addMovie(director,genre,rating,title) {
 	let reviewObj = {
@@ -58,7 +61,7 @@ function addMovie(director,genre,rating,title) {
 		.then( response => console.log(response) ) /* review was created successfully */
 		.catch( error => console.error(error) ); /* handle errors */
 
-	startingID++;
+	// startingID++;
 }
 
 function deleteMovie(id) {
@@ -99,8 +102,10 @@ function editMovie(id,director, genre,rating,title) {
 
 // addMovie("kitty cat", "comedy", 4, "this is a movie");
 // addMovie("kitty cat2", "comedy", 4, "this is a movie");
-// deleteMovie(20);
-// deleteMovie(21);
+// deleteMovie(11);
+// deleteMovie(12);
+// deleteMovie(13);
+// deleteMovie(14);
 // editMovie(20, "kitty meow", "comedy", 4, "this is a movie");
 
 
