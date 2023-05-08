@@ -33,31 +33,75 @@ let display = `<tr>
         <th>PH</th>
     </tr>`
 
-const reviewObj = {
-	director: "Stephen King",
-	genre: 'comedy',
-	id: 12,
-	rating: 5,
-	title: "It Floats"
-};
+
+startingID = 20;
+
+function addMovie(director,genre,rating,title) {
+	let reviewObj = {
+		director,
+		genre,
+		id: startingID,
+		rating,
+		title
+	};
 
 
-const url = 'https://checker-debonair-trigonometry.glitch.me/movies/12';
-const options = {
-	method: 'PUT',
-	headers: {
-		'Content-Type': 'application/json',
-	},
-	body: JSON.stringify(reviewObj)
-};
-fetch(url, options)
-	.then( response => console.log(response) ) /* review was created successfully */
-	.catch( error => console.error(error) ); /* handle errors */
+	let url = 'https://checker-debonair-trigonometry.glitch.me/movies';
+	const options = {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(reviewObj)
+	};
+	fetch(url, options)
+		.then( response => console.log(response) ) /* review was created successfully */
+		.catch( error => console.error(error) ); /* handle errors */
+
+	startingID++;
+}
+
+function deleteMovie(id) {
+	let url = `https://checker-debonair-trigonometry.glitch.me/movies/${id}`;
+	const options = {
+		method: 'DELETE',
+		headers: {
+			'Content-Type': 'application/json',
+		}
+	};
+	fetch(url, options)
+		.then( response => console.log(response) ) /* review was created successfully */
+		.catch( error => console.error(error) ); /* handle errors */
+}
+
+function editMovie(id,director, genre,rating,title) {
+	const editObj = {
+		director,
+		genre,
+		id,
+		rating,
+		title
+	};
+
+	let url = `https://checker-debonair-trigonometry.glitch.me/movies/${id}`;
+	const options = {
+		method: 'PUT',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(editObj)
+	};
+	fetch(url, options)
+		.then( response => console.log(response) ) /* review was created successfully */
+		.catch( error => console.error(error) ); /* handle errors */
+}
 
 
-
-
-
+// addMovie("kitty cat", "comedy", 4, "this is a movie");
+// addMovie("kitty cat2", "comedy", 4, "this is a movie");
+// deleteMovie(20);
+// deleteMovie(21);
+// editMovie(20, "kitty meow", "comedy", 4, "this is a movie");
 
 
 
