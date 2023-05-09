@@ -14,24 +14,7 @@
 
 </table>
 
-<section id="addMovieSection" class="hidden">
-<form>
-	Title
-	<input id="addTitle" type="text">
-
-	Genre
-	<input id="addGenre" type="text">
-
-	Director
-	<input id="addDirector" type="text">
-
-	Rating
-	<input id="addRating" type="number">
-
-</form>
-
-<button id="addMovie">Add</button>
-</section>
+<button id="addAMovie">Add A Movie</button>
 
 <label for="sort">Sort</label>
 <select name="sort" id="sort">
@@ -66,6 +49,25 @@
 <div class="overlay hidden"></div>
 
 
+<div class="modal hidden modal-two">
+	<form>
+		Title
+		<input id="addTitle" type="text">
+
+		Genre
+		<input id="addGenre" type="text">
+
+		Director
+		<input id="addDirector" type="text">
+
+		Rating
+		<input id="addRating" type="number">
+
+	</form>
+
+	<button id="addMovie">Add</button>
+
+</div>
 
 <script src="script.js"></script>
 </body>
