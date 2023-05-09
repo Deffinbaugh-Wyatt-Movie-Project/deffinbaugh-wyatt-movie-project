@@ -32,6 +32,7 @@ function getData() {
 			addEvents(idsArr);
 			console.log("movies:")
 			console.log(movies);
+			setDisable()
 		});
 }
 
@@ -257,18 +258,32 @@ $('#addAMovie').click(function() {
 	showModalTwo();
 })
 
-// addMovie("kitty cat", "comedy", 4, "this is a movie");
-// addMovie("kitty cat2", "comedy", 4, "this is a movie");
+$(`#search_button`).click(function (){
+	var searchInput = $('#search_bar').val();
+	let filteredMovies = movies.filter(movie => filterConditions(movie, searchInput));
+	console.log(filteredMovies)
+	displayMovies(filteredMovies);
+	idsArr = [];
+	filteredMovies.forEach(item => idsArr.push(item.id));
+	addEvents(idsArr);
+})
 
-// editMovie(20, "kitty meow", "comedy", 4, "this is a movie");
+function filterConditions(movie,searchInput) {
+	let byTitle = movie.title.toLowerCase().includes(searchInput.toLowerCase());
+	let byDirector = movie.director.toLowerCase().includes(searchInput.toLowerCase());
+	let byRating = movie.rating == searchInput;
+	let byGenre = movie.genre.toLowerCase().includes(searchInput.toLowerCase())
+	return byTitle || byDirector || byRating || byGenre;
+}
+
+function setDisable(){
+	const buttons = document.querySelectorAll('button');
+	buttons.forEach(button => $('button').attr("disabled",""))
+}
 
 
 
-//form for new movie
-//movie title, rating
-//post request
-//(prevent default)
 
 
-//edit existing movie
+
 
