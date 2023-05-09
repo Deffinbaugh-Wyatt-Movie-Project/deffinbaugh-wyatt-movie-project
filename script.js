@@ -1,32 +1,10 @@
-//call the api and get stuffs back
-            //-make pretty html
-//edit and delete button
-let startingID;
-
-
-// HOW TO GRAB STUFF
-fetch("https://checker-debonair-trigonometry.glitch.me/movies")
-    .then(res => res.json())
-    .then(data => {
-    console.log(data);
-    displayMovies(data);
-	startingID = data.length;
-});
-
-function displayMovies(data) {
-    data.forEach(movie => {
-        display += `<tr>
-        <td>${movie.title}</td>
-        <td>${movie.genre}</td>
-        <td>${movie.director}</td>
-        <td>${movie.rating}</td>
-        <td><button>Edit</button></td>
-        <td><button>Delete</button></td>
-    </tr>`
-    })
-    document.querySelector('#display-movies').innerHTML = display;
-}
-
+//modal selectors
+const modal = document.querySelector('.modal');
+const overlay = document.querySelector('.overlay');
+const closeButton = document.querySelector('.close-modal');
+//var to hold the current button pressed
+let currentButton;
+// html starter template for movie display
 let display = `<tr>
         <th>Movie Title</th>
         <th>Genre</th>
@@ -38,7 +16,49 @@ let display = `<tr>
 
 
 
+// HOW TO GRAB STUFF
+fetch("https://checker-debonair-trigonometry.glitch.me/movies")
+    .then(res => res.json())
+    .then(data => {
+    console.log(data);
+    displayMovies(data);
+	addEditEvents(data.length);
+});
 
+
+
+
+//adds event listeners to all edit buttons
+function addEditEvents(num) {
+	//TODO change id iteration to match id's from the data instead of incrementing
+	for(var i = 1; i < num+1; i++) {
+		$(`#edit-${i}`).click(function() {
+			showModal();
+			currentButton = (this.id).slice(5);
+		})
+	}
+}
+
+
+//this function displays the movies
+function displayMovies(data) {
+    data.forEach(movie => {
+        display += `<tr>
+        <td>${movie.title}</td>
+        <td>${movie.genre}</td>
+        <td>${movie.director}</td>
+        <td>${movie.rating}</td>
+        <td><button id="edit-${movie.id}">Edit</button></td>
+        <td><button>Delete</button></td>
+    </tr>`
+    })
+
+
+
+    document.querySelector('#display-movies').innerHTML = display;
+}
+
+//function to add movie
 function addMovie(director,genre,rating,title) {
 	let reviewObj = {
 		director,
@@ -64,6 +84,7 @@ function addMovie(director,genre,rating,title) {
 	// startingID++;
 }
 
+//function to delete movie
 function deleteMovie(id) {
 	let url = `https://checker-debonair-trigonometry.glitch.me/movies/${id}`;
 	const options = {
@@ -77,11 +98,11 @@ function deleteMovie(id) {
 		.catch( error => console.error(error) ); /* handle errors */
 }
 
+//function to edit movie
 function editMovie(id,director, genre,rating,title) {
 	const editObj = {
 		director,
 		genre,
-		id,
 		rating,
 		title
 	};
@@ -99,8 +120,7 @@ function editMovie(id,director, genre,rating,title) {
 		.catch( error => console.error(error) ); /* handle errors */
 }
 
-
-
+//adding a movie
 	$(document).ready(function (){
 		$("#addMovie").click(function (){
 			var title = $('#addTitle').val();
@@ -112,6 +132,36 @@ function editMovie(id,director, genre,rating,title) {
 	});
 
 
+//save movie
+$('#saveMovie').click(function() {
+	save(currentButton);
+});
+
+function save(id) {
+	var title = $('#editTitle').val();
+	var genre = $('#editGenre').val();
+	var director = $('#editDirector').val();
+	var rating = $('#editRating').val();
+	editMovie(id, director, genre, rating, title);
+}
+
+
+
+//MODAL STUFF
+closeButton.addEventListener('click', closeModal);
+
+function closeModal() {
+	modal.classList.add('hidden');
+	overlay.classList.add('hidden');
+}
+
+function showModal() {
+	modal.classList.remove('hidden');
+	overlay.classList.remove('hidden');
+	overlay.addEventListener('click', closeModal);
+}
+
+document.addEventListener('keydown', e => {if(e.key === "Escape") closeModal()});
 
 
 // addMovie("kitty cat", "comedy", 4, "this is a movie");
