@@ -21,9 +21,10 @@ function getData() {
 			$('#loading').addClass('hidden');
 			$('#display-movies').removeClass('hidden');
 			$('#addMovieSection').removeClass('hidden');
+			movies = [];
 			movies = data;
 			console.log(data);
-			displayMovies(data);
+			displayMovies(movies);
 			idsArr = [];
 			data.forEach(item => idsArr.push(item.id));
 			addEvents(idsArr);
@@ -221,6 +222,9 @@ function sort(selected) {
 		})
 	}
 	displayMovies(movies);
+	idsArr = [];
+	movies.forEach(item => idsArr.push(item.id));
+	addEvents(idsArr);
 }
 
 
