@@ -4,29 +4,34 @@ const overlay = document.querySelector('.overlay');
 const closeButton = document.querySelector('.close-modal');
 //var to hold the current button pressed
 let currentButton;
-// html starter template for movie display
-let display = `<tr>
-        <th>Movie Title</th>
-        <th>Genre</th>
-        <th>Director</th>
-        <th>Rating</th>
-        <th>PH</th>
-        <th>PH</th>
-    </tr>`
+
 
 let idsArr = [];
 
+let movies = [];
+
+getData();
 
 
 // HOW TO GRAB STUFF
-fetch("https://checker-debonair-trigonometry.glitch.me/movies")
-    .then(res => res.json())
-    .then(data => {
-    console.log(data);
-    displayMovies(data);
-	data.forEach(item => idsArr.push(item.id));
-	addEvents(idsArr);
-});
+function getData() {
+	fetch("https://checker-debonair-trigonometry.glitch.me/movies")
+		.then(res => res.json())
+		.then(data => {
+			$('#loading').addClass('hidden');
+			$('#display-movies').removeClass('hidden');
+			$('#addMovieSection').removeClass('hidden');
+			movies = data;
+			console.log(data);
+			displayMovies(data);
+			idsArr = [];
+			data.forEach(item => idsArr.push(item.id));
+			addEvents(idsArr);
+			console.log("movies:")
+			console.log(movies);
+		});
+}
+
 
 
 
@@ -50,6 +55,16 @@ function addEvents(num) {
 
 //this function displays the movies
 function displayMovies(data) {
+	// html starter template for movie display
+	let display = `<tr>
+        <th>Movie Title</th>
+        <th>Genre</th>
+        <th>Director</th>
+        <th>Rating</th>
+        <th>PH</th>
+        <th>PH</th>
+    </tr>`
+
     data.forEach(movie => {
         display += `<tr>
         <td>${movie.title}</td>
@@ -86,10 +101,11 @@ function addMovie(director,genre,rating,title) {
 		body: JSON.stringify(reviewObj)
 	};
 	fetch(url, options)
-		.then( response => console.log(response) ) /* review was created successfully */
+		.then( response => console.log(response) ).then(getData) /* review was created successfully */
 		.catch( error => console.error(error) ); /* handle errors */
 
 	// startingID++;
+
 }
 
 //function to delete movie
@@ -102,7 +118,7 @@ function deleteMovie(id) {
 		}
 	};
 	fetch(url, options)
-		.then( response => console.log(response) ) /* review was created successfully */
+		.then( response => console.log(response) ).then(getData) /* review was created successfully */
 		.catch( error => console.error(error) ); /* handle errors */
 }
 
@@ -124,8 +140,9 @@ function editMovie(id,director, genre,rating,title) {
 		body: JSON.stringify(editObj)
 	};
 	fetch(url, options)
-		.then( response => console.log(response) ) /* review was created successfully */
+		.then( response => console.log(response) ).then(getData) /* review was created successfully */
 		.catch( error => console.error(error) ); /* handle errors */
+
 }
 
 //adding a movie
@@ -174,10 +191,7 @@ document.addEventListener('keydown', e => {if(e.key === "Escape") closeModal()})
 
 // addMovie("kitty cat", "comedy", 4, "this is a movie");
 // addMovie("kitty cat2", "comedy", 4, "this is a movie");
-// deleteMovie(11);
-// deleteMovie(12);
-// deleteMovie(13);
-// deleteMovie(14);
+
 // editMovie(20, "kitty meow", "comedy", 4, "this is a movie");
 
 
@@ -190,5 +204,3 @@ document.addEventListener('keydown', e => {if(e.key === "Escape") closeModal()})
 
 //edit existing movie
 
-
-//delete movies
