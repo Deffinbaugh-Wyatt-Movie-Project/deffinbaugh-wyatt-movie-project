@@ -1,7 +1,7 @@
 //modal selectors
 const modal = document.querySelector('.modal');
 const modalOne = document.querySelector('.modal-one');
-const modalTwo = document.querySelector('.modal-one');
+const modalTwo = document.querySelector('.modal-two');
 const overlay = document.querySelector('.overlay');
 const closeButton = document.querySelector('.close-modal');
 //var to hold the current button pressed
@@ -234,7 +234,8 @@ function sort(selected) {
 closeButton.addEventListener('click', closeModal);
 
 function closeModal() {
-	modal.classList.add('hidden');
+	modalOne.classList.add('hidden');
+	modalTwo.classList.add('hidden');
 	overlay.classList.add('hidden');
 }
 
@@ -252,6 +253,9 @@ function showModalTwo() {
 
 document.addEventListener('keydown', e => {if(e.key === "Escape") closeModal()});
 
+$('#addAMovie').click(function() {
+	showModalTwo();
+})
 
 // addMovie("kitty cat", "comedy", 4, "this is a movie");
 // addMovie("kitty cat2", "comedy", 4, "this is a movie");
