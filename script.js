@@ -171,6 +171,58 @@ function save(id) {
 }
 
 
+document.querySelector("#sort").addEventListener('change', function() {
+	sort(this.value);
+})
+
+function sort(selected) {
+	if(selected === "rating") {
+		movies.sort((a,b) => {
+			return a.rating - b.rating;
+		});
+	} else if (selected === "title") {
+		movies.sort((a,b) => {
+			let fa = a.title.toLowerCase(),
+				fb = b.title.toLowerCase();
+
+			if (fa < fb) {
+				return -1;
+			}
+			if (fa > fb) {
+				return 1;
+			}
+			return 0;
+		})
+	} else if (selected === "genre") {
+		movies.sort((a,b) => {
+			let fa = a.genre.toLowerCase(),
+				fb = b.genre.toLowerCase();
+
+			if (fa < fb) {
+				return -1;
+			}
+			if (fa > fb) {
+				return 1;
+			}
+			return 0;
+		})
+	} else if (selected === "director") {
+		movies.sort((a,b) => {
+			let fa = a.director.toLowerCase(),
+				fb = b.director.toLowerCase();
+
+			if (fa < fb) {
+				return -1;
+			}
+			if (fa > fb) {
+				return 1;
+			}
+			return 0;
+		})
+	}
+	displayMovies(movies);
+}
+
 
 //MODAL STUFF
 closeButton.addEventListener('click', closeModal);
