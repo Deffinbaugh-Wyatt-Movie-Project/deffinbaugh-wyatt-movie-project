@@ -14,6 +14,8 @@ let display = `<tr>
         <th>PH</th>
     </tr>`
 
+let idsArr = [];
+
 
 
 // HOW TO GRAB STUFF
@@ -22,21 +24,27 @@ fetch("https://checker-debonair-trigonometry.glitch.me/movies")
     .then(data => {
     console.log(data);
     displayMovies(data);
-	addEditEvents(data.length);
+	data.forEach(item => idsArr.push(item.id));
+	addEvents(idsArr);
 });
 
 
 
 
 //adds event listeners to all edit buttons
-function addEditEvents(num) {
+function addEvents(num) {
 	//TODO change id iteration to match id's from the data instead of incrementing
-	for(var i = 1; i < num+1; i++) {
-		$(`#edit-${i}`).click(function() {
+	idsArr.forEach(num => {
+		$(`#edit-${num}`).click(function() {
 			showModal();
 			currentButton = (this.id).slice(5);
 		})
-	}
+		$(`#delete-${num}`).click(function() {
+			currentButton = (this.id).slice(7);
+			console.log(currentButton)
+			deleteMovie(currentButton);
+		})
+	})
 }
 
 
@@ -49,7 +57,7 @@ function displayMovies(data) {
         <td>${movie.director}</td>
         <td>${movie.rating}</td>
         <td><button id="edit-${movie.id}">Edit</button></td>
-        <td><button>Delete</button></td>
+        <td><button id="delete-${movie.id}">Delete</button></td>
     </tr>`
     })
 
