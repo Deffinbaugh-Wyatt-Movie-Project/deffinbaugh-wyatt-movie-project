@@ -1,5 +1,7 @@
 //modal selectors
 const modal = document.querySelector('.modal');
+const modalOne = document.querySelector('.modal-one');
+const modalTwo = document.querySelector('.modal-one');
 const overlay = document.querySelector('.overlay');
 const closeButton = document.querySelector('.close-modal');
 //var to hold the current button pressed
@@ -21,9 +23,10 @@ function getData() {
 			$('#loading').addClass('hidden');
 			$('#display-movies').removeClass('hidden');
 			$('#addMovieSection').removeClass('hidden');
+			movies = [];
 			movies = data;
 			console.log(data);
-			displayMovies(data);
+			displayMovies(movies);
 			idsArr = [];
 			data.forEach(item => idsArr.push(item.id));
 			addEvents(idsArr);
@@ -41,7 +44,7 @@ function addEvents(num) {
 	//TODO change id iteration to match id's from the data instead of incrementing
 	idsArr.forEach(num => {
 		$(`#edit-${num}`).click(function() {
-			showModal();
+			showModalOne();
 			currentButton = (this.id).slice(5);
 		})
 		$(`#delete-${num}`).click(function() {
@@ -221,6 +224,9 @@ function sort(selected) {
 		})
 	}
 	displayMovies(movies);
+	idsArr = [];
+	movies.forEach(item => idsArr.push(item.id));
+	addEvents(idsArr);
 }
 
 
@@ -232,8 +238,14 @@ function closeModal() {
 	overlay.classList.add('hidden');
 }
 
-function showModal() {
-	modal.classList.remove('hidden');
+function showModalOne() {
+	modalOne.classList.remove('hidden');
+	overlay.classList.remove('hidden');
+	overlay.addEventListener('click', closeModal);
+}
+
+function showModalTwo() {
+	modalTwo.classList.remove('hidden');
 	overlay.classList.remove('hidden');
 	overlay.addEventListener('click', closeModal);
 }
