@@ -43,7 +43,7 @@ function addMovie(director,genre,rating,title) {
 	let reviewObj = {
 		director,
 		genre,
-		id: startingID,
+		// id: startingID,
 		rating,
 		title
 	};
@@ -98,6 +98,20 @@ function editMovie(id,director, genre,rating,title) {
 		.then( response => console.log(response) ) /* review was created successfully */
 		.catch( error => console.error(error) ); /* handle errors */
 }
+
+
+
+	$(document).ready(function (){
+		$("#addMovie").click(function (){
+			var title = $('#addTitle').val();
+			var genre = $('#addGenre').val();
+			var director = $('#addDirector').val();
+			var rating = $('#addRating').val();
+			addMovie(director, genre, rating, title);
+		});
+	});
+
+
 
 
 // addMovie("kitty cat", "comedy", 4, "this is a movie");
