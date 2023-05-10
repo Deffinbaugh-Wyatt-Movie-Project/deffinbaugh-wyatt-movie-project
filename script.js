@@ -17,6 +17,7 @@ getData();
 
 // HOW TO GRAB STUFF
 function getData() {
+	setDisable();
 	fetch("https://checker-debonair-trigonometry.glitch.me/movies")
 		.then(res => res.json())
 		.then(data => {
@@ -32,15 +33,13 @@ function getData() {
 			addEvents(idsArr);
 			console.log("movies:")
 			console.log(movies);
-			setDisable()
+			setEnable()
 		});
 }
 
 
 
-
-
-//adds event listeners to all edit buttons
+//adds event listeners to all edit and delete buttons
 function addEvents(num) {
 	//TODO change id iteration to match id's from the data instead of incrementing
 	idsArr.forEach(num => {
@@ -87,6 +86,7 @@ function displayMovies(data) {
 
 //function to add movie
 function addMovie(director,genre,rating,title) {
+	setDisable()
 	let reviewObj = {
 		director,
 		genre,
@@ -114,6 +114,7 @@ function addMovie(director,genre,rating,title) {
 
 //function to delete movie
 function deleteMovie(id) {
+	setDisable()
 	let url = `https://checker-debonair-trigonometry.glitch.me/movies/${id}`;
 	const options = {
 		method: 'DELETE',
@@ -128,6 +129,7 @@ function deleteMovie(id) {
 
 //function to edit movie
 function editMovie(id,director, genre,rating,title) {
+	setDisable()
 	const editObj = {
 		director,
 		genre,
@@ -150,15 +152,15 @@ function editMovie(id,director, genre,rating,title) {
 }
 
 //adding a movie
-	$(document).ready(function (){
-		$("#addMovie").click(function (){
-			var title = $('#addTitle').val();
-			var genre = $('#addGenre').val();
-			var director = $('#addDirector').val();
-			var rating = $('#addRating').val();
-			addMovie(director, genre, rating, title);
-		});
+$(document).ready(function (){
+	$("#addMovie").click(function (){
+		var title = $('#addTitle').val();
+		var genre = $('#addGenre').val();
+		var director = $('#addDirector').val();
+		var rating = $('#addRating').val();
+		addMovie(director, genre, rating, title);
 	});
+});
 
 
 //save movie
@@ -280,6 +282,26 @@ function setDisable(){
 	const buttons = document.querySelectorAll('button');
 	buttons.forEach(button => $('button').attr("disabled",""))
 }
+
+function setEnable(){
+	const buttons = document.querySelectorAll('button');
+	buttons.forEach(button => $('button').removeAttr("disabled"))
+}
+
+
+async function getPoster(searchTerm,location){
+	const URL = `https://www.omdbapi.com/?s=${searchTerm}&page=1&apikey=6c2988bd`;
+	const res = await fetch(`${URL}`);
+	const data = await res.json();
+	console.log(data.Search);
+	if(data.Search != undefined) {
+		$(location).append(`<img src="${data.Search[0].Poster}" alt="movie poster">`);
+	} else {
+		$(location).append(`<img src="img/film-projector.jpeg" alt="movie poster">`);
+	}
+
+}
+// getPoster("star warhjkhjvkhjvkhvhgs:episode I", '#poster-testing');
 
 
 

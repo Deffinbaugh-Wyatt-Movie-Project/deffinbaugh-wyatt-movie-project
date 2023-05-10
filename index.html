@@ -14,10 +14,7 @@
 	<input id="search_bar" type="text" placeholder="Search..."><button id="search_button">Search</button>
 </div>
 
-<table id="display-movies" class="hidden">
-
-
-</table>
+<table id="display-movies" class="hidden"></table>
 
 <button id="addAMovie">Add A Movie</button>
 
@@ -28,6 +25,19 @@
 	<option value="rating">Rating</option>
 	<option value="director">Director</option>
 </select>
+
+
+
+<div id="movie-holders">
+	<div>
+		<img src="img/example.jpg" alt="">
+
+	</div>
+</div>
+
+
+
+
 
 
 <div class="modal hidden modal-one">
@@ -53,7 +63,6 @@
 
 <div class="overlay hidden"></div>
 
-
 <div class="modal hidden modal-two">
 	<form>
 		Title
@@ -71,8 +80,9 @@
 	</form>
 
 	<button id="addMovie">Add</button>
-
 </div>
+
+
 
 <script src="script.js"></script>
 </body>
