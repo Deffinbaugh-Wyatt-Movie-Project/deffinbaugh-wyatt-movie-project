@@ -10,11 +10,19 @@ let idsArr = [];
 //array to hold movie objects for sorting
 let movies = [];
 
-//initial call to the database
-getData();
+//timeout to show off our cool loading gif
+// var timeoutId = setTimeout(function() {
+    //initial call to the database
+    getData();
+// },0000)
 
 //click events
 $(document).ready(function () {
+    //bring up add movie modal
+    $('#addAMovie').click(function () {
+        showModalTwo();
+    });
+
     //adding a movie
     $("#addMovie").click(function () {
         var title = $('#addTitle').val();
@@ -38,10 +46,6 @@ $(document).ready(function () {
         sort(this.value);
     });
 
-    //bring up add movie modal
-    $('#addAMovie').click(function () {
-        showModalTwo();
-    });
 
     //enable search button
     $(`#search_button`).click(function () {
@@ -73,15 +77,16 @@ function getData() {
             $('#loading').addClass('hidden');
             $('#display-movies').removeClass('hidden');
             $('#addMovieSection').removeClass('hidden');
+            $('.surround').removeClass('hidden');
             movies = [];
             movies = data;
             displayMovies(movies);
             idsArr = [];
             data.forEach(item => idsArr.push(item.id));
             addEvents(idsArr);
-            clearInputs();
             //re-enable the buttons
-            setEnable()
+            clearInputs();
+            setEnable();
         });
 }
 
@@ -108,6 +113,7 @@ function addEvents(num) {
             //re-enabling buttons
             setEnable();
         })
+
         //delete buttons
         $(`#delete-${num}`).click(function () {
             currentButton = (this.id).slice(7);
@@ -130,8 +136,8 @@ function displayMovies(data) {
         }
 
         //movie card
-        display += `<div style="margin: 1em;">
-                        <div class="card" style="width: 16rem; min-height: 100%;">
+        display += `<div class="card-surround">
+                        <div class="card">
                             <div id="image-holder-${movie.id}"></div>
                                 <div class="card-body d-flex flex-column justify-content-between">
                                     <div>
@@ -188,7 +194,6 @@ function clearInputs() {
     $('#addGenre').val('');
     $('#addDirector').val('');
     $('#addRating').val('');
-    closeModal();
 }
 
 
@@ -290,12 +295,14 @@ function closeModal() {
     overlay.classList.add('hidden');
 }
 
+//modal for editing
 function showModalOne() {
     modalOne.classList.remove('hidden');
     overlay.classList.remove('hidden');
     overlay.addEventListener('click', closeModal);
 }
 
+//modal for adding
 function showModalTwo() {
     modalTwo.classList.remove('hidden');
     overlay.classList.remove('hidden');
@@ -312,12 +319,17 @@ function filterConditions(movie, searchInput) {
 
 function setDisable() {
     const buttons = document.querySelectorAll('button');
-    buttons.forEach(button => $('button').attr("disabled", ""))
+    buttons.forEach(button => $('button').attr("disabled", ""));
+    $('#addAMovie').addClass('disableLinks');
+    $('#sort').addClass('disableLinks');
+
 }
 
 function setEnable() {
     const buttons = document.querySelectorAll('button');
-    buttons.forEach(button => $('button').removeAttr("disabled"))
+    buttons.forEach(button => $('button').removeAttr("disabled"));
+    $('#addAMovie').removeClass('disableLinks');
+    $('#sort').removeClass('disableLinks');
 }
 
 
@@ -326,9 +338,9 @@ async function getPoster(searchTerm, location) {
     const res = await fetch(`${URL}`);
     const data = await res.json();
     if (data.Search != undefined && data.Search[0].Poster != "N/A") {
-        $(location).append(`<img src="${data.Search[0].Poster}" style="height:380px; width:252px;" class="card-img-top" alt="movie poster">`);
+        $(location).append(`<img src="${data.Search[0].Poster}" class="card-img-top" alt="movie poster">`);
     } else {
-        $(location).append(`<img src="img/film-projector.jpeg" class="card-img-top" alt="movie poster" style="height:380px; width:252px;">`);
+        $(location).append(`<img src="img/film-projector.jpeg" class="card-img-top" alt="movie poster">`);
     }
 
 }
