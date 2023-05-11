@@ -93,8 +93,15 @@ body {
 }
 
 .navHeader {
+    margin: 0 1em;
     background: transparent;
     color: white;
+}
+
+.navbar-toggler-icon {
+    font-weight: bold;
+    font-size: larger;
+    color: #F5C518;
 }
 
 .surround {
