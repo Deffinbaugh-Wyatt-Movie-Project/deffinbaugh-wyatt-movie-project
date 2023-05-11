@@ -26,6 +26,7 @@
 
 <label for="sort">Sort</label>
 <select name="sort" id="sort">
+	<option value="select" selected disabled>Select</option>
 	<option value="title">Title</option>
 	<option value="genre">Genre</option>
 	<option value="rating">Rating</option>
@@ -59,46 +60,48 @@
 
 </div>
 
-<div class="modal hidden modal-one">
+<div class="modal-2 hidden modal-one">
 	<button class="close-modal">&times;</button>
-	<form>
-		Title
+	<form class="d-flex flex-column">
+		<label for="editTitle">Title:</label>
 		<input id="editTitle" type="text">
 
-		Genre
+		<label for="editGenre">Genre:</label>
 		<input id="editGenre" type="text">
 
-		Director
+		<label for="editDirector">Director:</label>
 		<input id="editDirector" type="text">
 
-		Rating
+		<label for="editRating">Rating:</label>
 		<input id="editRating" type="number">
-
 	</form>
 
-	<button id="saveMovie">Save</button>
+	<div class="d-flex justify-content-end">
+		<button class="my-3" id="saveMovie">Save!</button>
+	</div>
 
 </div>
 
 <div class="overlay hidden"></div>
 
-<div class="modal hidden modal-two">
-	<form>
-		Title
+<div class="modal-2 hidden modal-two">
+	<button class="close-modal">&times;</button>
+	<form class="d-flex flex-column">
+		<label for="addTitle">Title:</label>
 		<input id="addTitle" type="text">
 
-		Genre
+		<label for="addGenre">Genre:</label>
 		<input id="addGenre" type="text">
 
-		Director
+		<label for="addDirector">Director:</label>
 		<input id="addDirector" type="text">
 
-		Rating
+		<label for="addRating">Rating:</label>
 		<input id="addRating" type="number">
-
 	</form>
-
-	<button id="addMovie">Add</button>
+<div class="d-flex justify-content-end">
+	<button class="my-3" id="addMovie">Add!</button>
+</div>
 </div>
 
 
