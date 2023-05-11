@@ -17,7 +17,7 @@
     var timeoutId = setTimeout(function() {
         //initial call to the database
         getData();
-    },1500)
+    },2000)
 
     //click events
     $(document).ready(function () {
