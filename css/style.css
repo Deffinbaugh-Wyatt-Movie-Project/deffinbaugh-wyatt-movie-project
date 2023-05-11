@@ -1,0 +1,188 @@
+body {
+    min-height: 100%;
+    background: black;
+}
+
+#loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+}
+
+
+
+.hidden {
+    display: none;
+}
+
+.modal-2 {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: linear-gradient(0deg,#000000, #430049, #6c026f);
+    color: #F5C518;
+    border: 2px solid #F5C518;
+    padding: 2em;
+    border-radius: 5px;
+    box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+    z-index: 5;
+}
+
+.show-modal {
+    font-size: 2rem;
+    font-weight: 600;
+    padding: 1.75rem 3.5rem;
+    margin: 5rem 2rem;
+    border: none;
+    background-color: #fff;
+    color: #444;
+    border-radius: 10rem;
+    cursor: pointer;
+}
+
+.close-modal {
+    position: absolute;
+    top: 1px;
+    right: 5px;
+    font-size: 2em;
+    color: #F5C518;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+
+.noBorders {
+    border: none;
+    background: none;
+    color: white;
+}
+
+.modal-2 > form > label {
+    margin-top: 1em;
+}
+
+.modal-2 > form > input {
+   background-color: lightgrey;
+}
+
+#addMovie, #saveMovie {
+    background-color: #F5C518;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+}
+
+.card-body{
+    background-image: linear-gradient(0deg,#000000, #430049, #6c026f);
+    color: white;
+}
+
+.navHeader {
+    margin: 0 1em;
+    background: transparent;
+    color: white;
+}
+
+.navbar-toggler-icon {
+    font-weight: bold;
+    font-size: larger;
+    color: #F5C518;
+}
+
+.surround {
+    background-image: linear-gradient(0deg,#000000, #430049, #6c026f);
+    padding-bottom: 1em;
+}
+
+.collapse a {
+    color: white;
+}
+
+.navbar a:hover {
+    color: #F5C518;
+}
+
+.search-add-sort{
+    display: flex;
+    justify-content: space-around;
+}
+
+h4{
+ color: white;
+}
+
+.card{
+    border: 2px solid #F5C518;
+    width: 16rem;
+    min-height: 100%;
+}
+
+h6{
+    color: #F5C518;
+}
+
+#search_button, #reset_button {
+    background-color: #F5C518;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    margin-left: 10px;
+}
+
+#search_bar {
+    background-color: lightgrey;
+}
+
+#search_bar:focus {
+    background-color: lightgrey;
+    outline: none;
+}
+
+select {
+    border: none;
+    background: transparent;
+    color: white;
+}
+
+
+select:focus {
+    border: none;
+    outline: none;
+}
+
+#movie-container {
+    max-width: 100vw;
+    margin: 0 2em;
+}
+
+.card-surround {
+    margin: 1em;
+}
+
+.card-img-top {
+    height:380px;
+    width:252px;
+}
+
+.disableLinks {
+    pointer-events: none;
+}
+
+.navbar-brand {
+    color: #F5C518;
+}
