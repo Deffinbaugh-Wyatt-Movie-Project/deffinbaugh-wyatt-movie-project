@@ -326,9 +326,9 @@ async function getPoster(searchTerm, location) {
     const res = await fetch(`${URL}`);
     const data = await res.json();
     if (data.Search != undefined && data.Search[0].Poster != "N/A") {
-        $(location).append(`<img src="${data.Search[0].Poster}" style="height:380px; width:255px;" class="card-img-top" alt="movie poster">`);
+        $(location).append(`<img src="${data.Search[0].Poster}" style="height:380px; width:252px;" class="card-img-top" alt="movie poster">`);
     } else {
-        $(location).append(`<img src="img/film-projector.jpeg" class="card-img-top" alt="movie poster">`);
+        $(location).append(`<img src="img/film-projector.jpeg" class="card-img-top" alt="movie poster" style="height:380px; width:252px;">`);
     }
 
 }

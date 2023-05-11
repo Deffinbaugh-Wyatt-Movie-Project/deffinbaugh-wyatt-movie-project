@@ -1,5 +1,6 @@
 body {
     min-height: 100%;
+    background: black;
 }
 
 #loading {
@@ -74,4 +75,30 @@ body {
 
 .modal-2 > form > label {
     margin-top: 1em;
+}
+
+.card-body{
+    background-image: linear-gradient(0deg,#000000, #430049, #6c026f);
+    color: white;
+}
+
+.sort{
+    color: white
+}
+
+.search-add-sort{
+    display: flex;
+    justify-content: space-around;
+}
+
+h4{
+ color: white;
+}
+
+.card{
+    border: 2px solid #F5C518;
+}
+
+h6{
+    color: #F5C518;
 }
