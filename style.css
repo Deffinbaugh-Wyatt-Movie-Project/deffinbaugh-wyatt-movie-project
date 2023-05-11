@@ -129,7 +129,7 @@ h6{
     color: #F5C518;
 }
 
-#search_button {
+#search_button, #reset_button {
     background-color: #F5C518;
     font-weight: bold;
     border-radius: 5px;
@@ -137,7 +137,12 @@ h6{
     margin-left: 10px;
 }
 
+#search_bar {
+    background-color: lightgrey;
+}
+
 #search_bar:focus {
+    background-color: lightgrey;
     outline: none;
 }
 

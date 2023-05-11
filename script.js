@@ -11,10 +11,10 @@ let idsArr = [];
 let movies = [];
 
 //timeout to show off our cool loading gif
-// var timeoutId = setTimeout(function() {
+var timeoutId = setTimeout(function() {
     //initial call to the database
     getData();
-// },0000)
+},2000)
 
 //click events
 $(document).ready(function () {
@@ -56,6 +56,12 @@ $(document).ready(function () {
         filteredMovies.forEach(item => idsArr.push(item.id));
         addEvents(idsArr);
     });
+
+    //clear search
+    $('#reset_button').click(function() {
+        getData();
+    })
+
 
     //MODAL STUFF
     closeButtons[0].addEventListener('click', closeModal);
