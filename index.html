@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Title</title>
 	<link rel="stylesheet" href="style.css">
+	<script src="https://kit.fontawesome.com/376cc6886e.js" crossorigin="anonymous"></script>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js"
@@ -25,87 +26,82 @@
 
 <label for="sort">Sort</label>
 <select name="sort" id="sort">
+	<option value="select" selected disabled>Select</option>
 	<option value="title">Title</option>
 	<option value="genre">Genre</option>
 	<option value="rating">Rating</option>
 	<option value="director">Director</option>
 </select>
-<div style="max-width: 100vw" class="d-flex flex-wrap">
+
+<div id="movie-container" style="max-width: 100vw" class="d-flex flex-wrap">
+
+
 	<div>
-	<div class="card" style="width: 16rem; margin: 1em">
-		<img src="img/example.jpg" class="card-img-top" alt="...">
-		<div class="card-body">
-			<h3>Title</h3>
-			<h5>director</h5>
-			<h5>Genre</h5>
-			<div class="d-flex justify-content-between">
-				<h5>Rating</h5>
+		<div class="card" style="width: 16rem; margin: 1em; min-height: 100%;">
+			<div id="image-holder-${movie.id}"></div>
+			<div class="card-body">
 				<div>
-					<button>edit</button>
-					<button>delete</button>
+					<h3>${movie.title}</h3>
+					<h5>${movie.director}</h5>
+					<h5>${movie.genre}</h5>
+				</div>
+				<div class="d-flex justify-content-between">
+					<h5>${movie.rating}</h5>
+					<div>
+						<button id="edit-${movie.id}">Edit</button>
+						<button id="delete-${movie.id}">Delete</button>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
+
+
 </div>
-<div>
-	<div class="card" style="width: 16rem; margin: 1em">
-		<img src="img/example.jpg" class="card-img-top" alt="...">
-		<div class="card-body">
-			<h3>Title</h3>
-			<h5>director</h5>
-			<h5>Genre</h5>
-			<div class="d-flex justify-content-between">
-				<h5>Rating</h5>
-				<div>
-					<button>edit</button>
-					<button>delete</button>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-</div>
-<div class="modal hidden modal-one">
+
+<div class="modal-2 hidden modal-one">
 	<button class="close-modal">&times;</button>
-	<form>
-		Title
+	<form class="d-flex flex-column">
+		<label for="editTitle">Title:</label>
 		<input id="editTitle" type="text">
 
-		Genre
+		<label for="editGenre">Genre:</label>
 		<input id="editGenre" type="text">
 
-		Director
+		<label for="editDirector">Director:</label>
 		<input id="editDirector" type="text">
 
-		Rating
+		<label for="editRating">Rating:</label>
 		<input id="editRating" type="number">
-
 	</form>
 
-	<button id="saveMovie">Save</button>
+	<div class="d-flex justify-content-end">
+		<button class="my-3" id="saveMovie">Save!</button>
+	</div>
 
 </div>
 
 <div class="overlay hidden"></div>
 
-<div class="modal hidden modal-two">
-	<form>
-		Title
+<div class="modal-2 hidden modal-two">
+	<button class="close-modal">&times;</button>
+	<form class="d-flex flex-column">
+		<label for="addTitle">Title:</label>
 		<input id="addTitle" type="text">
 
-		Genre
+		<label for="addGenre">Genre:</label>
 		<input id="addGenre" type="text">
 
-		Director
+		<label for="addDirector">Director:</label>
 		<input id="addDirector" type="text">
 
-		Rating
+		<label for="addRating">Rating:</label>
 		<input id="addRating" type="number">
-
 	</form>
-
-	<button id="addMovie">Add</button>
+<div class="d-flex justify-content-end">
+	<button class="my-3" id="addMovie">Add!</button>
+</div>
 </div>
 
 
