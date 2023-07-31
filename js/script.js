@@ -6,15 +6,15 @@
     const modalTwo = document.querySelector('.modal-two');
     const overlay = document.querySelector('.overlay');
     const closeButtons = document.querySelectorAll('.close-modal');
-    //var to hold the current button pressed
+    //variable to hold the current button pressed
     let currentButton;
     //array to hold ids
     let idsArr = [];
     //array to hold movie objects for sorting
     let movies = [];
 
-    //timeout to show off our cool loading gif
-    var timeoutId = setTimeout(function() {
+    //short timeout to show off our cool loading gif
+    let timeoutId = setTimeout(function() {
         //initial call to the database
         getData();
     },2000)
@@ -28,19 +28,19 @@
 
         //adding a movie
         $("#addMovie").click(function () {
-            var title = $('#addTitle').val();
-            var genre = $('#addGenre').val();
-            var director = $('#addDirector').val();
-            var rating = $('#addRating').val();
+            let title = $('#addTitle').val();
+            let genre = $('#addGenre').val();
+            let director = $('#addDirector').val();
+            let rating = $('#addRating').val();
             addMovie(director, genre, rating, title);
         });
 
         //save movie
         $('#saveMovie').click(function () {
-            var title = $('#editTitle').val();
-            var genre = $('#editGenre').val();
-            var director = $('#editDirector').val();
-            var rating = $('#editRating').val();
+            let title = $('#editTitle').val();
+            let genre = $('#editGenre').val();
+            let director = $('#editDirector').val();
+            let rating = $('#editRating').val();
             editMovie(currentButton, director, genre, rating, title);
         });
 
@@ -51,8 +51,9 @@
 
 
         //enable search button
-        $(`#search_button`).click(function () {
-            var searchInput = $('#search_bar').val();
+        $(`#search_button`).click(function (e) {
+            e.preventDefault();
+            let searchInput = $('#search_bar').val();
             let filteredMovies = movies.filter(movie => filterConditions(movie, searchInput));
             displayMovies(filteredMovies);
             idsArr = [];
@@ -66,7 +67,7 @@
         })
 
 
-        //MODAL STUFF
+        //MODAL ACTIONS
         closeButtons[0].addEventListener('click', closeModal);
         closeButtons[1].addEventListener('click', closeModal);
         document.addEventListener('keydown', e => {
@@ -294,8 +295,6 @@
         movies.forEach(item => idsArr.push(item.id));
         addEvents(idsArr);
     }
-
-
 
 
     function closeModal() {
